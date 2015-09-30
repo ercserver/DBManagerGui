@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="538.9609375" prefWidth="733.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <Label layoutX="30.0" layoutY="30.0" />
+  <TableView fx:id="tableView" editable="true" onContextMenuRequested="#rightMouseClickOnTable" prefHeight="407.9609375" prefWidth="705.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+  <ChoiceBox id="choiceBox" fx:id="tableNamesBox" layoutX="110.0" layoutY="30.0" prefWidth="120.0">
+    <items>
+      <FXCollections fx:factory="observableArrayList" />
+    </items>
+  </ChoiceBox>
+  <HBox fx:id="hb" alignment="BOTTOM_CENTER" fillHeight="false" prefHeight="60.001037499997494" prefWidth="705.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="467.96" />
+  <Button fx:id="refreshButton" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" textFill="#10cc00" />
+</AnchorPane>

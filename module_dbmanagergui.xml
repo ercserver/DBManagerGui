@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_dbmanagergui" default="compile.module.dbmanagergui">
+  <dirname property="module.dbmanagergui.basedir" file="${ant.file.module_dbmanagergui}"/>
+  
+  <property name="module.jdk.home.dbmanagergui" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.dbmanagergui" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.dbmanagergui" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.dbmanagergui" value="-encoding windows-1252 -source 8 ${compiler.args}"/>
+  
+  <property name="dbmanagergui.output.dir" value="${module.dbmanagergui.basedir}/out/production/DBManagerGui"/>
+  <property name="dbmanagergui.testoutput.dir" value="${module.dbmanagergui.basedir}/out/test/DBManagerGui"/>
+  
+  <path id="dbmanagergui.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="dbmanagergui.module.production.classpath">
+    <path refid="${module.jdk.classpath.dbmanagergui}"/>
+    <path refid="library.jtds-1.3.1.classpath"/>
+  </path>
+  
+  <path id="dbmanagergui.runtime.production.module.classpath">
+    <pathelement location="${dbmanagergui.output.dir}"/>
+    <path refid="library.jtds-1.3.1.classpath"/>
+  </path>
+  
+  <path id="dbmanagergui.module.classpath">
+    <path refid="${module.jdk.classpath.dbmanagergui}"/>
+    <pathelement location="${dbmanagergui.output.dir}"/>
+    <path refid="library.jtds-1.3.1.classpath"/>
+  </path>
+  
+  <path id="dbmanagergui.runtime.module.classpath">
+    <pathelement location="${dbmanagergui.testoutput.dir}"/>
+    <pathelement location="${dbmanagergui.output.dir}"/>
+    <path refid="library.jtds-1.3.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.dbmanagergui">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.dbmanagergui">
+    <patternset refid="excluded.from.module.dbmanagergui"/>
+  </patternset>
+  
+  <path id="dbmanagergui.module.sourcepath">
+    <dirset dir="${module.dbmanagergui.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.dbmanagergui" depends="compile.module.dbmanagergui.production,compile.module.dbmanagergui.tests" description="Compile module DBManagerGui"/>
+  
+  <target name="compile.module.dbmanagergui.production" depends="register.custom.compilers" description="Compile module DBManagerGui; production classes">
+    <mkdir dir="${dbmanagergui.output.dir}"/>
+    <javac2 destdir="${dbmanagergui.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dbmanagergui}/javac">
+      <compilerarg line="${compiler.args.dbmanagergui}"/>
+      <bootclasspath refid="dbmanagergui.module.bootclasspath"/>
+      <classpath refid="dbmanagergui.module.production.classpath"/>
+      <src refid="dbmanagergui.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.dbmanagergui"/>
+    </javac2>
+    
+    <copy todir="${dbmanagergui.output.dir}">
+      <fileset dir="${module.dbmanagergui.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.dbmanagergui.tests" depends="register.custom.compilers,compile.module.dbmanagergui.production" description="compile module DBManagerGui; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.dbmanagergui" description="cleanup module">
+    <delete dir="${dbmanagergui.output.dir}"/>
+    <delete dir="${dbmanagergui.testoutput.dir}"/>
+  </target>
+</project>
