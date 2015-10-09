@@ -6,7 +6,7 @@
   <property name="module.jdk.bin.dbmanagergui" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.dbmanagergui" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.dbmanagergui" value="-encoding windows-1252 -source 8 ${compiler.args}"/>
+  <property name="compiler.args.dbmanagergui" value="-encoding windows-1252 -source 1.7 ${compiler.args}"/>
   
   <property name="dbmanagergui.output.dir" value="${module.dbmanagergui.basedir}/out/production/DBManagerGui"/>
   <property name="dbmanagergui.testoutput.dir" value="${module.dbmanagergui.basedir}/out/test/DBManagerGui"/>

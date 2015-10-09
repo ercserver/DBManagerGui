@@ -150,6 +150,9 @@
     </fx:fileset>
     <fx:fileset id="all_DBManagerGui" dir="${artifact.temp.output.DBManagerGui}" includes="**/*.jar"/>
     <fx:application id="DBManagerGui_id" name="DBManagerGui" mainClass="sample.Main"/>
+    <fx:csstobin outdir="${artifact.temp.output.DBManagerGui}">
+      <fileset dir="${artifact.temp.output.DBManagerGui}" includes="**/*.css"/>
+    </fx:csstobin>
     <fx:jar destfile="${artifact.temp.output.DBManagerGui}\DBManagerGui.jar">
       <fx:application refid="DBManagerGui_id"/>
       <fileset dir="${artifact.temp.output.DBManagerGui}" excludes="**/*.jar"/>
@@ -158,7 +161,7 @@
       </fx:resources>
       <manifest/>
     </fx:jar>
-    <fx:deploy width="600" height="400" updatemode="background" outdir="${artifact.temp.output.DBManagerGui}\deploy" outfile="DBManagerGui">
+    <fx:deploy width="600" height="400" nativebundles="all" updatemode="background" outdir="${artifact.temp.output.DBManagerGui}\deploy" outfile="DBManagerGui">
       <fx:application refid="DBManagerGui_id"/>
       <fx:info title="DBManager"/>
       <fx:resources>
